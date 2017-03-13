@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 s.name = 'SGPageView'
-s.version = '1.0.0'
+s.version = '1.0.1'
 s.license = 'MIT'
 s.summary = 'An pageView component where can scroll tableView.'
 s.homepage = 'https://github.com/shanguo/SGPageView'
