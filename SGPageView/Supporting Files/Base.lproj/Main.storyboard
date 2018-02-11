@@ -44,7 +44,7 @@
                             <constraint firstAttribute="centerY" secondItem="KQZ-1w-vlD" secondAttribute="centerY" id="exm-UA-ej4"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="First" image="first" id="acW-dT-cKf"/>
+                    <tabBarItem key="tabBarItem" title="First" image="home_normal" selectedImage="home_selected" id="acW-dT-cKf"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
@@ -97,7 +97,7 @@
                             <constraint firstAttribute="trailing" secondItem="KK8-wT-WZu" secondAttribute="trailing" id="hhR-rN-ZLE"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Second" image="second" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" title="Second" image="circle_normal" selectedImage="circle_normal" id="cPa-gy-q4n"/>
                     <connections>
                         <outlet property="titleCollectionView" destination="KK8-wT-WZu" id="UQn-0g-QW1"/>
                     </connections>
@@ -124,14 +124,18 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zie-i6-9RH">
                                         <rect key="frame" x="0.0" y="0.0" width="187.5" height="44"/>
                                         <color key="backgroundColor" red="0.97254901959999995" green="0.56078431370000004" blue="0.08235294118" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="第一页"/>
+                                        <state key="normal" title="第一页">
+                                            <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
                                         <connections>
                                             <action selector="titleBtnClick:" destination="hb2-sj-EBe" eventType="touchUpInside" id="BD5-9H-vzU"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="at0-pa-Ghq">
                                         <rect key="frame" x="187.5" y="0.0" width="187.5" height="44"/>
-                                        <state key="normal" title="第二页"/>
+                                        <state key="normal" title="第二页">
+                                            <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
                                         <connections>
                                             <action selector="titleBtnClick:" destination="hb2-sj-EBe" eventType="touchUpInside" id="Sop-tL-jsI"/>
                                         </connections>
@@ -158,7 +162,7 @@
                             <constraint firstItem="OxB-Qv-07U" firstAttribute="top" secondItem="rvD-g3-ECa" secondAttribute="bottom" id="ydY-zE-6VF"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Third" id="81B-IQ-45b"/>
+                    <tabBarItem key="tabBarItem" title="Third" image="own_normal" selectedImage="own_selected" id="81B-IQ-45b"/>
                     <connections>
                         <outlet property="titleBtn1" destination="Zie-i6-9RH" id="hzk-2O-ENC"/>
                         <outlet property="titleBtn2" destination="at0-pa-Ghq" id="FpN-yh-VTj"/>
@@ -176,6 +180,7 @@
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="selectedImageTintColor" red="0.97254901959999995" green="0.56078431370000004" blue="0.08235294118" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="9pv-A4-QxB" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
@@ -189,7 +194,11 @@
         </scene>
     </scenes>
     <resources>
-        <image name="first" width="30" height="30"/>
-        <image name="second" width="30" height="30"/>
+        <image name="circle_normal" width="22" height="22"/>
+        <image name="home_normal" width="22" height="22"/>
+        <image name="home_selected" width="22" height="22"/>
+        <image name="own_normal" width="22" height="22"/>
+        <image name="own_selected" width="22" height="22"/>
     </resources>
+    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>

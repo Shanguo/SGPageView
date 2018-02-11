@@ -28,14 +28,14 @@ static NSString * const kCellID = @"Cell";
     self.dataArrays = @[@[@"a",@"b",@"c",@"d",@"e",@"f",@"g"],
                         @[@"View"],
                         @[@"CollectionView"],
-                        @[@"http://www.baidu.com"],
+                        @[@"https://zhidao.baidu.com/question/425382312987430932.html"],
                         @[@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"10"],
                         @[@"@",@"#",@"$",@"&",@"^",@"*",@"("],
                         @[@"哈",@"你",@"好",@"吗",@"啊",@"嘿",@"和"],
                         @[@"A",@"S",@"D",@"E",@"G",@"S",@"H"],
                         @[@"山东",@"河北",@"浙江",@"福建",@"江苏",@"北京",@"上海"],
                         @[@"中国",@"美国",@"英国",@"印度",@"法国",@"巴西",@"西班牙"],
-                        @[@"https://zhidao.baidu.com/question/425382312987430932.html"]];
+                        @[@"http://www.baidu.com"]];
     [self.titleCollectionView setTag:-1];
     [self.titleCollectionView registerNib:[UINib nibWithNibName:kTitleCollectionViewCellID bundle:nil] forCellWithReuseIdentifier:kTitleCollectionViewCellID];
     [self.view addSubview:self.pageView];
@@ -168,7 +168,10 @@ static NSString * const kCellID = @"Cell";
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    if (collectionView.tag<0) [self.pageView scrollToIndex:indexPath.row animated:YES];
+    if (collectionView.tag<0) {
+        [collectionView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionCenteredHorizontally];
+        [self.pageView scrollToIndex:indexPath.row animated:YES];
+    }
 }
 
 #pragma mark - getter
