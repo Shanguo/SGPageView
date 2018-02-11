@@ -1,9 +1,9 @@
 //
 //  AppDelegate.m
-//  SGPageViewTest
+//  SGPageView
 //
-//  Created by 刘山国 on 2016/12/22.
-//  Copyright © 2016年 山国. All rights reserved.
+//  Created by 刘山国 on 2018/2/10.
+//  Copyright © 2018年 山国. All rights reserved.
 //
 
 #import "AppDelegate.h"

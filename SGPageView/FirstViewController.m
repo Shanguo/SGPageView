@@ -1,26 +1,27 @@
 //
-//  ViewController.m
-//  SGPageViewTest
+//  FirstViewController.m
+//  SGPageView
 //
-//  Created by 刘山国 on 2016/12/22.
-//  Copyright © 2016年 山国. All rights reserved.
+//  Created by 刘山国 on 2018/2/10.
+//  Copyright © 2018年 山国. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "FirstViewController.h"
 #import "SGPageView.h"
 
-@interface ViewController ()<SGPageViewDelegate,SGPageViewDataSource,UITableViewDelegate,UITableViewDataSource>
+static NSString * const kCellID = @"Cell";
+@interface FirstViewController ()<UITableViewDelegate,UITableViewDataSource,SGPageViewDelegate,SGPageViewDataSource>
 
 @property (nonatomic,strong) SGPageView *pageView;
 @property (nonatomic,strong) NSArray *dataArrays;
 
+
 @end
 
-@implementation ViewController
+@implementation FirstViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     self.dataArrays = @[@[@"a",@"b",@"c",@"d",@"e",@"f",@"g"],
                         @[@"1",@"2",@"3",@"4",@"5",@"6",@"7"],
                         @[@"@",@"#",@"$",@"&",@"^",@"*",@"("],
@@ -34,55 +35,50 @@
 
 }
 
-- (void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-}
 
-- (void)scroll{
-    [self.pageView scrollToIndex:4 animated:YES];
-}
 #pragma mark SGPageView Data Source
 
-- (NSInteger)numberOfViewsInPageView{
+- (NSInteger)numberPages{
     return self.dataArrays.count;
 }
 
-- (void)pageView:(SGPageView *)pageView shouldSettingTableView:(UITableView *)tableView atIndex:(NSInteger)index{
+- (UIView *)pageView:(SGPageView *)pageView viewForIndex:(NSInteger)index {
+    UITableView *tableView = [pageView reusableViewWithIdentifier:nil forIndex:index];
+    if (!tableView) {
+        NSLog(@"%@%d",@"新建tableView",index);
+        tableView = [[UITableView alloc] init];
+    }
+//    [tableView setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
     tableView.delegate = self;
     tableView.dataSource = self;
-    [tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
-    NSLog(@"tableView==%d",tableView.tag);
+    [tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:kCellID];
+//    [tableView setBackgroundColor:[UIColor greenColor]];
+//    [tableView reloadData];
+    return tableView;
 }
 
-#pragma mark - UITableView DataSource
 
+//- (void)pageView:(SGPageView *)pageView shouldSettingTableView:(UITableView *)tableView atIndex:(NSInteger)index{
+//    tableView.delegate = self;
+//    tableView.dataSource = self;
+//    [tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:kCellID];
+//    NSLog(@"tableView==%ld",(long)tableView.tag);
+//}
 
 #pragma mark - UITableView Delegate
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 1;
-}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return [self.dataArrays[tableView.tag] count];
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (tableView.tag%2==0) return 60;
     return 120;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"  forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellID  forIndexPath:indexPath];
     cell.textLabel.text = self.dataArrays[tableView.tag][indexPath.row];
     return cell;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-}
-
-
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-//    NSLog(@"sccccc");
 }
 
 
@@ -96,10 +92,9 @@
     return _pageView;
 }
 
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    
-    NSLog(@"didReceiveMemoryWarning");
     // Dispose of any resources that can be recreated.
 }
 
